@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { Provider } from 'react-redux';
+import configureStore from './store-configure';
+
+import ErrorBoundary from './components/error-boundary';
+import Router from './router';
+
+import Service from './service'
+import { ServiceContext } from './context';
+
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = configureStore();
+const service = new Service();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(
+    <Provider store={store}>
+        <ErrorBoundary>
+            <ServiceContext.Provider value={service}>
+                <Router />
+            </ServiceContext.Provider>
+        </ErrorBoundary>
+    </Provider>,
+    document.getElementById('root')
+);
