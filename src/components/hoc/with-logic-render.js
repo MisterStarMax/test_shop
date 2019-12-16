@@ -16,8 +16,9 @@ const withLogicRender = () => (View) => {
 
         useEffect(() => fetchData(), [fetchData]);
 
-        if (error) return <ErrorIndicator />
+        
         if (loading) return <CircularProgress size={60} style={style.load}/>;
+        if (error) return <ErrorIndicator />
         return <View {...props} />
     }
 }

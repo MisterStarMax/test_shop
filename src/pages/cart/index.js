@@ -4,10 +4,11 @@ import { addToCart, delFromCart, setCountToCart } from '../../actions';
 import FormContact from './formContact'
 import ItemCart from './itemCart';
 import {useTotalCountAndPrice} from '../../components/customHooks'
-import { Container, CartList, TotalPrice } from './style'
+import { Container, CartList, TotalPrice, Title } from './style'
 
 const CartPage = ({ cart, delFromCart, addToCart, setCountToCart}) => {
-    const { price } = useTotalCountAndPrice(cart)
+    const { price, count } = useTotalCountAndPrice(cart)
+    if (count <= 0) return <Title>Вы пока ничего не добавили в корзину!</Title>;
     return (
         <Container>
             <CartList>

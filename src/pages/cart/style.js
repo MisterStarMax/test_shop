@@ -76,3 +76,7 @@ export const TotalPrice = styled.span`
     font-size: 18px;
     margin: 10px 0;
 `;
+
+export const Title = styled.h1`
+    text-align: center
+`
